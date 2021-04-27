@@ -13,9 +13,41 @@
         <source>success_message</source>
         <target>Your request has been registered.</target>
       </trans-unit>
-      <trans-unit id="a5pfG6v" resname="submit">
+      <trans-unit id="dUkL17k" resname="submit">
         <source>submit</source>
-        <target>Send</target>
+        <target>Call me</target>
+      </trans-unit>
+      <trans-unit id="fqdE2av" resname="noRequestFound">
+        <source>noRequestFound</source>
+        <target>No Callback found</target>
+      </trans-unit>
+      <trans-unit id="pWFFJwz" resname="id">
+        <source>id</source>
+        <target>ID</target>
+      </trans-unit>
+      <trans-unit id="nPIv0BV" resname="firstName">
+        <source>firstName</source>
+        <target>First name</target>
+      </trans-unit>
+      <trans-unit id="GMnl1E4" resname="lastName">
+        <source>lastName</source>
+        <target>Last name</target>
+      </trans-unit>
+      <trans-unit id="r.ZOT9U" resname="country">
+        <source>country</source>
+        <target>Country</target>
+      </trans-unit>
+      <trans-unit id="Fkb3pc4" resname="nationalPhoneNumber">
+        <source>nationalPhoneNumber</source>
+        <target>Phone number national</target>
+      </trans-unit>
+      <trans-unit id="tABtsAf" resname="internationalPhoneNumber">
+        <source>internationalPhoneNumber</source>
+        <target>Phone number international</target>
+      </trans-unit>
+      <trans-unit id="kK4muVl" resname="listpage.title">
+        <source>listpage.title</source>
+        <target>List</target>
       </trans-unit>
     </body>
   </file>

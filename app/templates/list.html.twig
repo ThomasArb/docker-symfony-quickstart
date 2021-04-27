@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ 'listpage.title' | trans }}{% endblock %}
+
+{% block body %}
+    <div class="vertical-center">
+        <div class="container">
+            {% if callbackRequests is empty %}
+            <div class="col-auto">
+                <p>{{ 'noRequestFound' | trans }}</p>
+            </div>
+            {% else %}
+            <div class="table-responsive">
+                <table class="table borderless">
+                    <thead>
+                    <tr>
+                        <th>{{ 'id' | trans }}</th>
+                        <th>{{ 'firstName' | trans }}</th>
+                        <th>{{ 'lastName' | trans }}</th>
+                        <th>{{ 'country' | trans }}</th>
+                        <th>{{ 'nationalPhoneNumber' | trans }}</th>
+                        <th>{{ 'internationalPhoneNumber' | trans }}</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for callbackRequest in callbackRequests %}
+                        <tr class="callbackRequest-line">
+                            <td class="align-middle">{{ callbackRequest.id }}</td>
+                            <td class="align-middle">{{ callbackRequest.firstname }}</td>
+                            <td class="align-middle">{{ callbackRequest.lastname }}</td>
+                            <td class="align-middle">{{ callbackRequest.country }}</td>
+                            <td class="align-middle">{{ callbackRequest.nationalPhoneNumber }}</td>
+                            <td class="align-middle">{{ callbackRequest.internationalPhoneNumber }}</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}

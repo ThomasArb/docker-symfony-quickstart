@@ -13,9 +13,41 @@
         <source>success_message</source>
         <target>Votre demande a bien été enregistrée.</target>
       </trans-unit>
-      <trans-unit id="a5pfG6v" resname="submit">
+      <trans-unit id="dUkL17k" resname="submit">
         <source>submit</source>
-        <target>Envoyer</target>
+        <target>Appelez moi</target>
+      </trans-unit>
+      <trans-unit id="fqdE2av" resname="noRequestFound">
+        <source>noRequestFound</source>
+        <target>Pas de demande de retour</target>
+      </trans-unit>
+      <trans-unit id="pWFFJwz" resname="id">
+        <source>id</source>
+        <target>ID</target>
+      </trans-unit>
+      <trans-unit id="nPIv0BV" resname="firstName">
+        <source>firstName</source>
+        <target>Prénom</target>
+      </trans-unit>
+      <trans-unit id="GMnl1E4" resname="lastName">
+        <source>lastName</source>
+        <target>Nom</target>
+      </trans-unit>
+      <trans-unit id="r.ZOT9U" resname="country">
+        <source>country</source>
+        <target>Pays</target>
+      </trans-unit>
+      <trans-unit id="Fkb3pc4" resname="nationalPhoneNumber">
+        <source>nationalPhoneNumber</source>
+        <target>Numéro de téléphone national</target>
+      </trans-unit>
+      <trans-unit id="tABtsAf" resname="internationalPhoneNumber">
+        <source>internationalPhoneNumber</source>
+        <target>Numéro de téléphone international</target>
+      </trans-unit>
+      <trans-unit id="kK4muVl" resname="listpage.title">
+        <source>listpage.title</source>
+        <target>Liste</target>
       </trans-unit>
     </body>
   </file>
