@@ -3,9 +3,12 @@
 {% block title %}{{ 'homepage.title' | trans }}{% endblock %}
 
 {% block body %}
-  <div class="vertical-center">
-    <div class="container">
-        {{ form(form) }}
+    <div class="vertical-center">
+        <div class="container">
+            {{ form_start(form, {'attr': {'id': 'form_callback'}}) }}
+            {{ form_widget(form) }}
+            <button type="submit" id="callback_submit" class="btn-primary btn">{{ 'submit' | trans }}</button>
+            {{ form_end(form) }}
+        </div>
     </div>
-</div>
 {% endblock %}
