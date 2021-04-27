@@ -7,9 +7,11 @@ use App\Form\CallbackRequestType;
 use Doctrine\Common\Persistence\ManagerRegistry;
 use Doctrine\Persistence\ObjectManager;
 use Symfony\Component\Form\FormFactoryInterface;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Twig\Environment;
 
 /**
@@ -36,6 +38,11 @@ class HomePageController
     private $formFactory;
 
     /**
+     * @var UrlGeneratorInterface
+     */
+    private $router;
+
+    /**
      * @param ManagerRegistry $registry
      * @param Environment $twigEnvironment
      * @param FormFactoryInterface $formFactory
@@ -43,12 +50,14 @@ class HomePageController
     public function __construct(
         ManagerRegistry $registry,
         Environment $twigEnvironment,
-        FormFactoryInterface $formFactory
+        FormFactoryInterface $formFactory,
+        UrlGeneratorInterface $router
     )
     {
         $this->entityManager = $registry->getManagerForClass(CallbackRequest::class);
         $this->twigEnvironment = $twigEnvironment;
         $this->formFactory = $formFactory;
+        $this->router = $router;
     }
 
     /**
@@ -67,6 +76,7 @@ class HomePageController
             $callbackRequest = $form->getData();
             $this->entityManager->persist($callbackRequest);
             $this->entityManager->flush();
+            return new RedirectResponse($this->router->generate('success_page'));
         }
         return new Response($this->twigEnvironment->render('index.html.twig', [
             'form' => $form->createView(),
