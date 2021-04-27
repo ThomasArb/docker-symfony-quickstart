@@ -21,39 +21,24 @@ use Twig\Environment;
 class CallbackListController
 {
     /**
-     * @var ObjectManager|null
-     */
-    private $entityManager;
-
-    /**
-     * @var Environment
-     */
-    private $twigEnvironment;
-
-    /**
-     * @param ManagerRegistry $registry
-     * @param Environment $twigEnvironment
-     */
-    public function __construct(
-        ManagerRegistry $registry,
-        Environment $twigEnvironment
-    )
-    {
-        $this->entityManager = $registry->getManagerForClass(CallbackRequest::class);
-        $this->twigEnvironment = $twigEnvironment;
-    }
-
-    /**
      * Display all callbackRequests in a HTML table.
+     *
+     * @param ManagerRegistry $registry
+     * @param Environment     $twigEnvironment
      *
      * @return Response
      *
      * @Route("/list", name="list_page")
      */
-    public function __invoke(Request $request): Response
+    public function __invoke(
+        ManagerRegistry $registry,
+        Environment $twigEnvironment
+    ): Response
     {
-        return new Response($this->twigEnvironment->render('list.html.twig', [
-            'callbackRequests' => $this->entityManager->getRepository(CallbackRequest::class)->findAll(),
+        return new Response($twigEnvironment->render('list.html.twig', [
+            'callbackRequests' => $registry->getManagerForClass(CallbackRequest::class)
+                                            ->getRepository(CallbackRequest::class)
+                                            ->findAll(),
         ]));
     }
 }

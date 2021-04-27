@@ -23,62 +23,37 @@ use Twig\Environment;
 class HomePageController
 {
     /**
-     * @var ObjectManager|null
-     */
-    private $entityManager;
-
-    /**
-     * @var Environment
-     */
-    private $twigEnvironment;
-
-    /**
-     * @var FormFactoryInterface
-     */
-    private $formFactory;
-
-    /**
-     * @var UrlGeneratorInterface
-     */
-    private $router;
-
-    /**
-     * @param ManagerRegistry $registry
-     * @param Environment $twigEnvironment
-     * @param FormFactoryInterface $formFactory
-     */
-    public function __construct(
-        ManagerRegistry $registry,
-        Environment $twigEnvironment,
-        FormFactoryInterface $formFactory,
-        UrlGeneratorInterface $router
-    )
-    {
-        $this->entityManager = $registry->getManagerForClass(CallbackRequest::class);
-        $this->twigEnvironment = $twigEnvironment;
-        $this->formFactory = $formFactory;
-        $this->router = $router;
-    }
-
-    /**
      * Display the homepage of the site with the form to create a callback request.
+     *
+     * @param Request               $request
+     * @param ManagerRegistry       $registry
+     * @param Environment           $twigEnvironment
+     * @param FormFactoryInterface  $formFactory
+     * @param UrlGeneratorInterface $router
      *
      * @return Response
      *
      * @Route("/", name="home_page")
      */
-    public function __invoke(Request $request): Response
+    public function __invoke(
+        Request $request,
+        ManagerRegistry $registry,
+        Environment $twigEnvironment,
+        FormFactoryInterface $formFactory,
+        UrlGeneratorInterface $router
+    ): Response
     {
         $callbackRequest = new CallbackRequest();
-        $form = $this->formFactory->createBuilder(CallbackRequestType::class, $callbackRequest)->getForm();
+        $form = $formFactory->createBuilder(CallbackRequestType::class, $callbackRequest)->getForm();
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $callbackRequest = $form->getData();
-            $this->entityManager->persist($callbackRequest);
-            $this->entityManager->flush();
-            return new RedirectResponse($this->router->generate('success_page'));
+            $entityManager = $registry->getManagerForClass(CallbackRequest::class);
+            $entityManager->persist($callbackRequest);
+            $entityManager->flush();
+            return new RedirectResponse($router->generate('success_page'));
         }
-        return new Response($this->twigEnvironment->render('index.html.twig', [
+        return new Response($twigEnvironment->render('index.html.twig', [
             'form' => $form->createView(),
         ]));
     }
