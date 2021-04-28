@@ -3,13 +3,18 @@
 
 ## Install
 
+Before starting the project, you need to set three env variable (in a `.env` file for example) :
+* VALIDATOR_URI : url of the api to validate phone numbers
+* VALIDATOR_LOGIN : username for the api
+* VALIDATOR_PASSWORD : password for the api
+
 ```bash
 docker-compose -f etc/docker/docker-compose.yml up -d 
-docker exec -ti docker_app_1 bash -c "cd app && composer update"
-docker exec -ti docker_app_1 bash -c "cd app && php bin/console cache:clear --env=prod && php bin/console cache:clear --env=dev"
+docker exec -ti docker_app_1 bash -c "cd app && composer install"
+docker exec -ti docker_app_1 bash -c "cd app && php bin/console doctrine:migration:migrate && php bin/console cache:clear --env=prod && php bin/console cache:clear --env=dev"
 ```
 
-open [http://localhost:8000](http://localhost:8000)
+Open [http://localhost:8000](http://localhost:8000)
 
 -----
 
