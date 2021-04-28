@@ -1,8 +1,10 @@
 <nav class="navbar navbar-expand-lg navbar-light" id="navbar">
-    <a class="navbar-brand" href="{{ path('home_page') }}">
-        {{ 'homepage.title' | trans }}
-    </a>
-    <a class="navbar-brand" href="{{ path('list_page') }}">
-        {{ 'listpage.title' | trans }}
-    </a>
+    <div id="navbarMenu">
+        <a class="navbar-brand" href="{{ path('home_page') }}">
+            {{ 'homepage.title' | trans }}
+        </a>
+        <a class="navbar-brand" href="{{ path('list_page') }}">
+            {{ 'listpage.title' | trans }}
+        </a>
+    </div>
 </nav>
